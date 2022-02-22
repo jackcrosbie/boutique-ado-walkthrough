@@ -32,12 +32,12 @@
                     <div class="card h-100 border-0">
                         <!-- renders product image if it exists -->
                         {% if product.image %}
-                        <a href="">
+                        <a href="{% url 'product_detail' product.id %}">
                             <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                         </a>
                         <!-- else renders default image from folder-->
                         {% else %}
-                        <a href="">
+                        <a href="{% url 'product_detail' product.id %}">
                             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                         </a>
                         {% endif %}
@@ -67,28 +67,28 @@
                 </div>
                 <!-- Line break after product on small screen -->
                 {% if forloop.counter|divisibleby:1 %}
-                    <div class="col-12 d-sm-none mb-5">
-                        <hr>
-                    </div>
-                    {% endif %}                        
-                    {% if forloop.counter|divisibleby:2 %}
-                        <!-- only visible on small and medium screens, not large -->
-                        <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                            <hr>
-                        </div>
-                    {% endif %}
-                    {% if forloop.counter|divisibleby:3 %}
-                        <!-- only visible on large screens, hidden on med and small, renders after 3 cols -->
-                        <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                            <hr>
-                        </div>
-                    {% endif %}
-                    {% if forloop.counter|divisibleby:4 %}
-                        <!-- only visible on large screens, renders after 4 col-->
-                        <div class="col-12 d-none d-xl-block mb-5">
-                            <hr>
-                        </div>
-                    {% endif %}
+                <div class="col-12 d-sm-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:2 %}
+                <!-- only visible on small and medium screens, not large -->
+                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:3 %}
+                <!-- only visible on large screens, hidden on med and small, renders after 3 cols -->
+                <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:4 %}
+                <!-- only visible on large screens, renders after 4 col-->
+                <div class="col-12 d-none d-xl-block mb-5">
+                    <hr>
+                </div>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
