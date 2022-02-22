@@ -2,6 +2,11 @@ from django.db import models
 
 # Create your models here.
 class Category(models.Model):
+    """model for category of products on sale on website"""
+    class Meta:
+        """Meta class to change plural of category to categories in Admin panel"""
+        verbose_name_plural = 'Categories'
+
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
