@@ -11,9 +11,26 @@ def all_products(request):
     # start as none to ensure we don't get an error when loading without a search term
     query = None
     categories = None
+    sort = None
+    direction = None
 
 
     if request.GET:
+        # checking if sort is in request and if so the parameters for what happens
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            # keeps original fields name 'name' and allows to sort my lower_name
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    # will sort in descending order. - before makes it descending
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)
+
         # checking whether it exists in request.GET
         if 'category' in request.GET:
             # split into list at the commas
@@ -37,12 +54,13 @@ def all_products(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
             
-            
+    current_sorting = f'{sort}_{direction}'        
 
     context = {
         'products': products,
         'search_term': query,
         'current_categories': categories,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'products/products.html', context)
