@@ -104,7 +104,7 @@ a.category-badge>span.badge:hover {
 
 /* -------------------------------- Media Queries */
 
-/* Slightly larger container on xl screens */
+/* -------------------------------- Slightly larger container on xl screens */
 @media (min-width: 1200px) {
     .container {
         max-width: 80%;
@@ -126,7 +126,7 @@ a.category-badge>span.badge:hover {
     }
 }
 
-/* pad the top a bit when navbar is collapsed on mobile */
+/* ---------------------------------- pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {
     .header-container {
         padding-top: 116px;
