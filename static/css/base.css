@@ -44,6 +44,13 @@ body {
     color: white;
 }
 
+.btn-outline-black {
+    background: white;
+    color: black !important;
+    /* use important to override link colours for <a> elements */
+    border: 1px solid black;
+}
+
 .shop-now-button:hover,
 .shop-now-button:active,
 .shop-now-button:focus,
@@ -97,6 +104,7 @@ a.category-badge>span.badge:hover {
     bottom: 10px;
     right: 10px;
 }
+
 
 .btt-link {
     cursor: pointer;
