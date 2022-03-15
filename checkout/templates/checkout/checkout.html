@@ -52,7 +52,8 @@
                 </div>
                 <div class="col-7">
                     <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                    <p class="my-0 small">Size: {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                    <p class="my-0 small">Size:
+                        {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
                     <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                 </div>
                 <div class="col-3 text-right">
@@ -100,7 +101,8 @@
                     <div class="form-check form-check-inline float-right mr-0">
                         {% if user.is_authenticated %}
                         <!-- all users delivery information -->
-                        <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
+                        <label class="form-check-label" for="id-save-info">Save this delivery information to my
+                            profile</label>
                         <!-- inline checkbox allow authenicated users to save information -->
                         <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
                         {% else %}
@@ -149,4 +151,10 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{{ stripe_public_key|json_script:"id_stripe_public_key" }}
+{{ client_secret|json_script:"id_client_secret" }}
 {% endblock %}
