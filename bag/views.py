@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
 
 from products.models import Product
@@ -22,6 +22,7 @@ def add_to_bag(request, item_id):
         size = request.POST['product_size']
     """ get bag variable if exists in session or create if it doesn't """
     bag = request.session.get('bag', {})
+
 
     """ single item id for each item but can still track sizes """
     if size:
@@ -80,6 +81,7 @@ def adjust_bag(request, item_id):
     """ overwrite session with updated version """
     request.session['bag'] = bag
     return redirect(reverse('view_bag'))
+    print('quantity')
 
 
 def remove_from_bag(request, item_id):
