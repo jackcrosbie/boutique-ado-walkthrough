@@ -35,6 +35,16 @@
     border: solid 1px black;
 }
 
+select,
+select option {
+    color: #000000;
+}
+
+select:invalid,
+select option[value=""] {
+    color: #aab7c4 !important;
+}
+
 .fieldset-label {
     position: relative;
     right: .5rem;
