@@ -3,10 +3,9 @@ from .models import UserProfile
 
 
 class UserProfileForm(forms.ModelForm):
-    """ checkout order form """
     class Meta:
         model = UserProfile
-        exclude = ('user')
+        exclude = ('user',)
 
     def __init__(self, *args, **kwargs):
         """
@@ -14,7 +13,7 @@ class UserProfileForm(forms.ModelForm):
         labels and set autofocus on first field
         """
         super().__init__(*args, **kwargs)
-        placeholders = {default_
+        placeholders = {
             'default_phone_number': 'Phone Number',
             'default_postcode': 'Postal Code',
             'default_town_or_city': 'Town or City',
